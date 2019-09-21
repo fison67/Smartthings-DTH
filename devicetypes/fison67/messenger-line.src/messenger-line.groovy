@@ -1,5 +1,5 @@
 /**
- *  Messenger Line (v.0.0.1)
+ *  Messenger Line (v.0.0.2)
  *
  * MIT License
  *
@@ -32,7 +32,7 @@ import groovy.json.JsonSlurper
 metadata {
 	definition (name: "Messenger Line", namespace: "fison67", author: "fison67") {
         capability "Speech Synthesis"
-         
+        capability "Actuator"
 	}
 
 	simulator {}
@@ -67,17 +67,19 @@ def sendCommand(text){
 	def options = [
         uri: "https://notify-api.line.me/api/notify",
         headers: [
-        	'Authorization': 'Bearer ' + settings._token
+        "accept": "application/json",
+        	'Authorization': 'Bearer ' + settings._token,
+            'content-type': 'application/x-www-form-urlencoded'
       	],
-        body: [
-            "message": text
+        query: [
+            "message": text.replace(">>", "\n")
         ]
     ]
-
+    log.debug options
     try {
         httpPost(options) { resp ->
             if(resp.data.status == 200){
-            	log.debug "Success to send Message}"
+            	log.debug "Success to send Message"
             } else{
             	log.debug "Failed to send Message >> ${resp.data}"
             }
