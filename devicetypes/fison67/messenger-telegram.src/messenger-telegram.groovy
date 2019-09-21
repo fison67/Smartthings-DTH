@@ -1,5 +1,5 @@
 /**
- *  Telegram Messenger (v.0.0.1)
+ *  Telegram Messenger (v.0.0.2)
  *
  * MIT License
  *
@@ -32,7 +32,7 @@ import groovy.json.JsonSlurper
 metadata {
 	definition (name: "Messenger Telegram", namespace: "fison67", author: "fison67") {
         capability "Speech Synthesis"
-         
+        capability "Actuator"
 	}
 
 	simulator {}
@@ -64,7 +64,7 @@ def speak(text){
 def updated() {}
 
 def sendCommand(text){
-	def encodedText = java.net.URLEncoder.encode(text, "UTF-8")
+	def encodedText = java.net.URLEncoder.encode(text, "UTF-8").replace("%3E%3E", "%0A")
 	def params = [
         uri: "https://api.telegram.org/bot${settings._token}/sendMessage?chat_id=${settings._id}&text=${encodedText}"
     ]
