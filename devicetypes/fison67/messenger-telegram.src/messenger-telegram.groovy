@@ -1,5 +1,5 @@
 /**
- *  Telegram Messenger (v.0.0.2)
+ *  Telegram Messenger (v.0.0.3)
  *
  * MIT License
  *
@@ -38,8 +38,8 @@ metadata {
 	simulator {}
 
 	preferences {
-		input name: "_token", title:"Token" , type: "string", required: true 
-		input name: "_id", title:"ID" , type: "string", required: true   
+		input name: "_token", title:"Token" , type: "text", required: true 
+		input name: "_id", title:"ID" , type: "text", required: true   
 	}
 
 	tiles {
