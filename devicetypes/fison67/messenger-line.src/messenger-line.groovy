@@ -1,5 +1,5 @@
 /**
- *  Messenger Line (v.0.0.2)
+ *  Messenger Line (v.0.0.3)
  *
  * MIT License
  *
@@ -38,7 +38,7 @@ metadata {
 	simulator {}
 
 	preferences {
-		input name: "_token", title:"Token" , type: "string", required: true 
+		input name: "_token", title:"Token" , type: "text", required: true 
 	}
 
 	tiles {
